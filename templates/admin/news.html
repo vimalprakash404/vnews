@@ -1,0 +1,65 @@
+{% extends 'admin/main.html' %}
+{% block content %}
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+      <div class="filter">
+        
+        
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+
+        <table class="table table-borderless datatable">
+          <thead>
+            <tr>
+              <th scope="col">title</th>
+              <th scope="col">contact </th>
+              <th scope="col">views</th>
+              <th scope="col">image</th>
+              <th scope="col">category</th>
+              <th scope="col">place</th>
+              <th scope="col">date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in news %}
+            <tr>
+              <td>
+                {{i.title}}
+              </td>
+              <td>
+                {{i.content}}
+              </td>
+              <td>
+                {{i.views}}
+              </td>
+              <td>
+                {{i.image}}
+              </td>
+              <td>
+                {{i.Category}}
+              </td>
+              <td>
+                {{i.place}}
+              </td>
+              <td>
+                {{i.date}}
+              </td>
+              <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal{{i.phone}}">
+                view
+              </button>
+              
+              </td>
+              </tr>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}

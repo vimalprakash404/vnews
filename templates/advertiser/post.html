@@ -1,0 +1,70 @@
+{% extends 'advertiser/main.html' %}
+{% block content %}
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+      <div class="filter">
+        
+        
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title">Ads<span></span></h5>
+
+        <table class="table table-borderless datatable">
+          <thead>
+            <tr>
+              <th scope="col">advertiser</th>
+              <th scope="col">title</th>
+              <th scope="col">image </th>
+              <th scope="col">link</th>
+              <th scope="col">type</th>
+              <th scope="col">date</th>
+              <th scope="col">month</th>
+              <th scope="col">status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in ads %}
+            <tr>
+              <td>
+                {{i.advertiser}}
+              </td>
+              <td>
+                {{i.title}}
+              </td>
+              <td>
+                {{i.image}}
+              </td>
+              <td>
+                {{i.link}}
+              </td>
+              <td>
+                {{i.Type}}
+              </td>
+              <td>
+                {{i.date}}
+              </td>
+              <td>
+                {{i.months}}
+              </td>
+              <td>
+                {{i.status}}
+              </td>
+              
+              <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal{{i.phone}}">
+                view
+              </button>
+              
+              </td>
+              </tr>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}

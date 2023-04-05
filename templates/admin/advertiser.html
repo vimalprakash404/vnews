@@ -1,0 +1,52 @@
+{% extends 'admin/main.html' %}
+{% block content %}
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+      <div class="filter">
+        
+        
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+
+        <table class="table table-borderless datatable">
+          <thead>
+            <tr>
+              <th scope="col">Company Name</th>
+              <th scope="col">place</th>
+              <th scope="col">post </th>
+              <th scope="col">pin</th>
+              <th scope="col">building name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in adv %}
+            <tr>
+              <td>
+                {{i.Company_Name}}
+              </td>
+              <td>
+                {{i.place}}
+              </td>
+              <td>
+                {{i.post}}
+              </td>
+              <td>
+                {{i.pin}}
+              </td>
+              <td>
+                {{i.building_name}}
+              </td>
+              </tr>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}

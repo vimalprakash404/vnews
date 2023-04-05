@@ -1,0 +1,40 @@
+{% extends 'admin/main.html' %}
+{% block content %}
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+      <div class="filter">
+        <a type="button" class="btn btn-outline-primary rounded-pill" href="{% url 'addcategory' %}">Add category</a>
+        
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+
+        <table class="table table-borderless datatable">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">category </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in category %}
+            <tr>
+              <td>
+                {{i.id}}
+              </td>
+              <td>
+                {{i.name}}
+              </td>
+              </tr>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}

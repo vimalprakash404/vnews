@@ -1,0 +1,56 @@
+{% extends 'user/home.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="position-relative mb-3">
+                <img class="img-fluid w-100" src="img/news-700x435-1.jpg" style="object-fit: cover;">
+                <div class="bg-white border border-top-0 p-4">
+                    <div class="mb-3">
+                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                            href="">{{news.Category}}</a>
+                        <a class="text-body" href="">{{news.date}}</a>
+                    </div>
+                    <h1 class="mb-3 text-secondary text-uppercase font-weight-bold">{{news.title}}</h1>
+                    <img class="img-fluid w-50 float-left mr-4 mb-2" src="/media/{{news.image}}">
+                    <p><b>{{news.place}}:</b>{{news.content}}</p>
+                    
+                   
+                </div>
+                <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
+                    <div class="d-flex align-items-center">
+                        <img class="rounded-circle mr-2" src="img/user.jpg" width="25" height="25" alt="">
+                        <span>John Doe</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="ml-3"><i class="far fa-eye mr-2"></i>{{news.views}}</span>
+                        <span class="ml-3"><i class="far fa-comment mr-2"></i>123</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <img class="img-fluid w-100" src="img/news-700x435-1.jpg" style="object-fit: cover;">
+            <div class="bg-white border border-top-0 p-4">
+                <div class="mb-3">
+                    
+                </div>
+                <h1 class="mb-3 text-secondary text-uppercase font-weight-bold">Ads</h1>
+                <a href="{{ads.link}}"><img src="/media/{{ads.image}}" width="100%"><a>
+               
+            </div>
+            <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
+                <div class="d-flex align-items-center">
+                    <img class="rounded-circle mr-2" src="img/user.jpg" width="25" height="25" alt="">
+                    <span>John Doe</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="ml-3"><i class="far fa-eye mr-2"></i>{{news.views}}</span>
+                 
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
