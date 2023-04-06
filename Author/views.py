@@ -21,7 +21,7 @@ def addnews(request):
             return render(request,"tmform.html",context)
     else:
         context["form"]=NewsForm(request.POST,request.FILES)
-        return render(request,"tmform.html",context)
+        return render(request,"newpost.html",context)
 
 def viewcategory(request):
     

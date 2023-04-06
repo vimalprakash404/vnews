@@ -1,12 +1,13 @@
 from django import forms
 from .models import *
-from django.forms.widgets import DateInput
+from django.forms.widgets import DateInput,TextInput
 class NewsForm(forms.ModelForm):
     class Meta:
         model = News
         fields="__all__"
         widgets={
-            'date':DateInput(attrs={'type':"date"})
+            'date':DateInput(attrs={'type':"date"}),
+            "content":TextInput(attrs={"hidden":"","required" :False})
         }
     def __init__(self,*args,**kwargs):
         super(NewsForm,self).__init__(*args,**kwargs)
