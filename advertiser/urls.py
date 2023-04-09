@@ -6,5 +6,6 @@ urlpatterns = [
     path("add/type/",addposttype),
     path("view/type/",viewtype),
     path("view/post",viewads,name="viewads"),
-    path("login/",login)
+    path("login/",login,name="login"),
+    path("logout",logout)
 ]
