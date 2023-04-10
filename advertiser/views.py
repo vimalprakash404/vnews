@@ -3,6 +3,7 @@ from .form import AdvertiserForm,AdsForm,AdsTypeForm,AddAdvertiserLoginTable
 from .models import Ads,AdsType
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login as auth_login,logout
+from django.contrib.auth.models import User
 # Create your views here.
 def register(request):
     context={}
@@ -24,6 +25,10 @@ def register(request):
     context["form"]=AdvertiserForm()
     context["form1"]=AddAdvertiserLoginTable()
     return render(request,"tmform.html",context)
+
+def home(request):
+    return render(request,"advertiser/home.html")
+
 def is_advertiser(request):
     if request.user.is_authenticated:
         return (request.user.username[2:].isnumeric() and request.user.username[:2]=="ad")
@@ -87,13 +92,14 @@ def login(request):
     context={}
     context["title"]="Login"
     if request.method=="POST":
-        username=request.POST["username"]
+        email=request.POST["username"]
         password=request.POST["password"]
+        username=User.objects.get(email=email).username
         if username and password:
-            user=authenticate(request,username="ad2",password=password)
+            user=authenticate(request,username=username,password=password)
             if user:
                 auth_login(request,user)
-                return redirect("/home")
+                return redirect("viewads")
             else :
                 context["message"]="invalid password"
                 return render(request,"admin/login.html",context=context)
