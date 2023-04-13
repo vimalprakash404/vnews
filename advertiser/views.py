@@ -78,7 +78,15 @@ def postads(request):
 def viewads(request):
     if not is_advertiser(request):
         return redirect("login")
-    context={"ads":Ads.objects.all().filter(advertiser_id=int(request.user.username[2:]))}
+    ads=Ads.objects.all().filter(advertiser_id=int(request.user.username[2:]))
+    for i in ads:
+        if i.status == 0:
+            i.status = "pending"
+        elif i.status == 1 :
+            i.status = "accept"
+        else :
+            i.status = "removed"
+    context={"ads":ads}
     return render(request,"advertiser/post.html",context)
 
 

@@ -91,7 +91,16 @@ def test(request):
 def post(request):
     if not is_admin(request):
         return redirect("auth_login")
-    context={"post":Ads.objects.all()}
+    ads=Ads.objects.all()
+    for i in ads:
+        if i.status == 0:
+            i.status = "pending"
+        elif i.status == 1 :
+            i.status = "accept"
+        else :
+            i.status = "removed"
+
+    context={"post":ads}
     return render(request,"admin/post.html",context)
 
 def advertiser(request):

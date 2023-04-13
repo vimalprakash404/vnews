@@ -27,6 +27,7 @@ class Ads(models.Model):
     date=models.DateField(auto_now=False, auto_now_add=False)
     months=models.IntegerField()  
     status=models.IntegerField(default=0)
+    views=models.IntegerField(default=0)
     #status 0 when pending
     #status 1 when accept
     #status 2 when removes
