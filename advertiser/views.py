@@ -115,8 +115,8 @@ def login(request):
                 return redirect("viewads")
             else :
                 context["message"]="invalid password"
-                return render(request,"admin/login.html",context=context)
+                return render(request,"advertiser/login.html",context=context)
         else:
             context["message"]="Enter username and password"
-            return render(request,"admin/login.html",context=context)
-    return render(request,"admin/login.html",context=context)
+            return render(request,"advertiser/login.html",context=context)
+    return render(request,"advertiser/login.html",context=context)
