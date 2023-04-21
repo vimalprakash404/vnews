@@ -56,12 +56,35 @@ def addnews(request):
             context["message"]="added"
             return render(request,"tmform.html",context)
         else:
-            context["message"]="not added"
+            context["form"]=NewsForm(request.POST,request.FILES)
             return render(request,"tmform.html",context)
     else:
         context["form"]=NewsForm(request.POST,request.FILES)
         return render(request,"newpost.html",context)
 
+def editnews(request,id):
+    context={}
+    if not is_admin(request):
+        return redirect("auth_login")
+    if request.method=="POST":
+        form=NewsForm(request.POST,request.FILES)
+        if form.is_valid() :
+            data=form.save(commit=False)
+            data.id=id
+            data.save()
+            context["message"]="added"
+            return render(request,"tmform.html",context)
+        else:
+            context["form"]=NewsForm(request.POST,request.FILES)
+            return render(request,"tmform.html",context)
+    else:
+        objectdata=News.objects.get(id=id)
+        context["form"]=NewsForm(instance=objectdata)
+        return render(request,"newpost.html",context)
+
+def removenews(request,id):
+    News.objects.get(id=id).delete()
+    return redirect("viewnews")
 def viewcategory(request):
     if not is_admin(request):
         return redirect("auth_login")

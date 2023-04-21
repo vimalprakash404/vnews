@@ -8,5 +8,5 @@ urlpatterns = [
     path("view/post",viewads,name="viewads"),
     path("login/",login,name="login"),
     path("logout",logout),
-    path("home",home,name="ad_home")
+    path("",home,name="ad_home")
 ]

@@ -8,6 +8,8 @@ urlpatterns = [
     path("view/post",post,name="post"),
     path("view/adv",advertiser,name="advertiser"),
     path("add/news",addnews,name="addnews"),
+    path("edit/news/<int:id>",editnews,name="editnews"),
+    path("remove/news/<int:id>",removenews,name="removenews"),
     path("add/category",addcategory,name="addcategory"),
     path("test",test),
     path("post/accept/<int:id>",acceptpost,name="acceptpost"),

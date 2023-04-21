@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .form import AdvertiserForm,AdsForm,AdsTypeForm,AddAdvertiserLoginTable
-from .models import Ads,AdsType
+from .models import Ads,AdsType, Advertiser
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login as auth_login,logout
 from django.contrib.auth.models import User
@@ -27,6 +27,8 @@ def register(request):
     return render(request,"tmform.html",context)
 
 def home(request):
+    if not is_advertiser(request):
+        return redirect("login")
     return render(request,"advertiser/home.html")
 
 def is_advertiser(request):
@@ -55,7 +57,8 @@ def addposttype(request):
     else:
         context["form"]=AdsTypeForm(request.POST)
         return render(request,"tmform.html",context)
-
+def get_advertiser(request):
+    return Advertiser.objects.get(id=request.user.username[2:])
 def postads(request):
     if not is_advertiser(request):
         return redirect("login")
@@ -63,13 +66,15 @@ def postads(request):
     if request.method=="POST":
         form=AdsForm(request.POST,request.FILES)
         if form.is_valid() :
-            form.save()
+            data=form.save(commit=False)
+            data.advertiser=get_advertiser(request)
+            data.save()
             context["message"]="added"
             context["form"]=AdsForm(request.POST,request.FILES)
             return render(request,"advertiser/tmform.html",context)
         else:
             context["form"]=AdsForm(request.POST)
-            context["message"]="added"
+            context["message"]="invalid data"
             return render(request,"advertiser/tmform.html",context)
     else:
         context["form"]=AdsForm(request.POST,request.FILES)

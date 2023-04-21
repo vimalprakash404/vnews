@@ -47,9 +47,15 @@
               <td>
                 {{i.date}}
               </td>
-              <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal{{i.phone}}">
+              <td><a type="button" class="btn btn-primary" href="{% url 'news' id=i.id %}">
                 view
-              </button>
+              </a>
+              <a type="button" class="btn btn-primary" href="{% url 'removenews' id=i.id %}">
+                remove
+              </a>
+              <a type="button" class="btn btn-primary" href="{% url 'editnews' id=i.id %}">
+                edit
+              </a>
               
               </td>
               </tr>

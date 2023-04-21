@@ -15,7 +15,7 @@ class AdvertiserForm(forms.ModelForm):
 class AdsForm(forms.ModelForm):
     class Meta:
         model = Ads
-        exclude=["status"]
+        exclude=["status","views","advertiser"]
         widgets={
             'date':DateInput(attrs={'type':"date"})
         }  
