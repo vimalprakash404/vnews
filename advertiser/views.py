@@ -1,6 +1,7 @@
+
 from django.shortcuts import render, redirect
 from .form import AdvertiserForm, AdsForm, AdsTypeForm, AddAdvertiserLoginTable
-from .models import Ads, AdsType, Advertiser
+from .models import Ads, AdsType, Advertiser, payment
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.models import User
@@ -73,9 +74,12 @@ def postads(request):
     if request.method == "POST":
         form = AdsForm(request.POST, request.FILES)
         if form.is_valid():
+
             data = form.save(commit=False)
             data.advertiser = get_advertiser(request)
             data.save()
+            payment_object = payment.objects.create(amount=(
+                data.Type.price*data.months), type="online payment", order_id=str(data.id)+"_or", ads=data)
             context["message"] = "added"
             context["form"] = AdsForm(request.POST, request.FILES)
             return render(request, "advertiser/tmform.html", context)
@@ -132,5 +136,5 @@ def login(request):
     return render(request, "advertiser/login.html", context=context)
 
 
-def payment(request):
+def order_id(request):
     pass

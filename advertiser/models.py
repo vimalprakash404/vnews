@@ -42,3 +42,4 @@ class payment(models.Model):
     amount = models.FloatField()
     type = models.CharField(max_length=50)
     order_id = models.CharField(max_length=100)
+    ads = models.ForeignKey(Ads, on_delete=models.CASCADE)
