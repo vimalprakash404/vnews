@@ -43,3 +43,4 @@ class payment(models.Model):
     type = models.CharField(max_length=50)
     order_id = models.CharField(max_length=100)
     ads = models.ForeignKey(Ads, on_delete=models.CASCADE)
+    status = models.CharField(max_length=50, default="pending")

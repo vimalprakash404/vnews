@@ -82,7 +82,7 @@ def postads(request):
                 data.Type.price*data.months), type="online payment", order_id=str(data.id)+"_or", ads=data)
             context["message"] = "added"
             context["form"] = AdsForm(request.POST, request.FILES)
-            return render(request, "advertiser/tmform.html", context)
+            return redirect("payment", id=payment_object.id)
         else:
             context["form"] = AdsForm(request.POST)
             context["message"] = "invalid data"
@@ -138,3 +138,26 @@ def login(request):
 
 def order_id(request):
     pass
+
+
+def payment_view(request, id):
+    payment_object = payment.objects.get(id=id)
+    context = {"data": payment_object}
+    return render(request, "advertiser/payment.html", context=context)
+
+
+def payment_failed(request, id):
+    payment_object = payment.objects.get(id=id)
+    payment_object.status = "failed"
+    payment_object.save()
+    context = {"data": payment_object}
+
+    return render(request, "advertiser/payment _fail.html", context=context)
+
+
+def payment_success(request, id):
+    payment_object = payment.objects.get(id=id)
+    payment_object.status = "success"
+    payment_object.save()
+    context = {"data": payment_object}
+    return render(request, "advertiser/payment _success.html", context=context)

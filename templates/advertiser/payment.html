@@ -1,0 +1,82 @@
+{% extends 'advertiser/main.html' %}
+{% block content %}
+<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+          <div class="d-flex justify-content-center py-4">
+            <a href="index.html" class="logo d-flex align-items-center w-auto">
+              <img src="assets/img/logo.png" alt="">
+            </a>
+          </div><!-- End Logo -->
+
+          <div class="card mb-3">
+
+            <div class="card-body">
+
+              <div class="pt-4 pb-2">
+                <h5 class="card-title text-center pb-0 fs-4 d-none d-lg-block">Payment</h5>
+                <p class="text-center small">Payment details</p>
+              </div>
+
+              
+                
+
+                <table class="table">
+                    <thead>
+                      <tr>
+                        
+                        <th scope="col">Ad</th>
+                        <th scope="col">month</th>
+                        <th scope="col">Amount</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>{{data.ads.Type}}</td>
+                          <td>{{data.ads.months}}</td>
+                          <td>{{data.amount}}</td>
+                          
+                        </tr>
+                    </tbody>
+                    
+                </table>
+                
+                <div class="col-12">
+                  <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#basicModal">Pay</button>
+                </div>
+                
+                <div class="modal fade" id="basicModal" tabindex="-1">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Payment </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Enter a Payment status
+                      </div>
+                      <div class="modal-footer">
+                        <a type="button" class="btn btn-success" href= "{% url 'payment_success' id=data.id %}">Payment Success</a>
+                        <a type="button" class="btn btn-danger" href="{% url 'payment_failed' id=data.id %}">Payment Failed</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{message}}
+                
+              
+
+            </div>
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+
+  </section>
+{% endblock content %}
+
