@@ -82,7 +82,7 @@ def postads(request):
                 data.Type.price*data.months), type="online payment", order_id=str(data.id)+"_or", ads=data)
             context["message"] = "added"
             context["form"] = AdsForm(request.POST, request.FILES)
-            return redirect("payment", id=payment_object.id)
+            return redirect("payment_view", id=payment_object.id)
         else:
             context["form"] = AdsForm(request.POST)
             context["message"] = "invalid data"
