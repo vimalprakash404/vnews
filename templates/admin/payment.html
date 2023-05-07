@@ -1,0 +1,53 @@
+{% extends 'admin/main.html' %}
+{% block content %}
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+    
+
+      <div class="card-body">
+        <h5 class="card-title">Payments <span></span></h5>
+
+        <table class="table table-borderless datatable">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">ads </th>
+              <th scope="col">type </th>
+              <th scope="col">amount </th>
+              <th scope="col">order </th>
+              <th scope="col">status </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in data %}
+            <tr>
+              <td>
+                {{i.id}}
+              </td>
+              <td>
+                {{i.ads.title}}
+              </td>
+              <td>
+                {{i.type}}
+              </td>
+              <td>
+                {{i.amount}}
+              </td>
+              <td>
+                {{i.order_id}}
+              </td>
+              <td>
+                {{i.status}}
+              </td>
+              </tr>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}

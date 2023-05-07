@@ -281,6 +281,12 @@
           <span>Advertiser</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link {% if not todo_list %}collapsed{% endif %}" href="{% url 'viewpayment' %}">
+          <i class="bi bi-stickies{% if todo_list %}-fill{% endif %}"></i>
+          <span>Payment</span>
+        </a>
+      </li>
     </ul>
 
   </aside><!-- End Sidebar-->
