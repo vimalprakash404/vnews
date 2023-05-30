@@ -1,7 +1,8 @@
 import random
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from Author.models import News, Category
 from advertiser.models import Ads
+from django.contrib.auth import logout as auth_logout
 # Create your views here.
 
 
@@ -30,3 +31,7 @@ def getads(type):
     a = Ads.objects.all().filter(status=1, Type_id=int(type))
     index = random.randint(0, Ads.objects.all().filter(status=1, Type_id=int(type)).count()-1)
     return a[index]
+
+def logout(request):
+    auth_logout(request)
+    return redirect("/ad/login/")

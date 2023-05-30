@@ -120,7 +120,7 @@
               <hr class="dropdown-divider">
             </li>
 
-            <li class="message-item">
+            {% comment %} <li class="message-item">
               <a href="#">
                 <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
                 <div>
@@ -164,7 +164,7 @@
 
             <li class="dropdown-footer">
               <a href="#">Show all messages</a>
-            </li>
+            </li> {% endcomment %}
 
           </ul><!-- End Messages Dropdown Items -->
 
@@ -217,7 +217,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="/logout">
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'auth_login' %}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
