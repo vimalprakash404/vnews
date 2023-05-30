@@ -28,6 +28,10 @@ def single(request, id):
 
 
 def getads(type):
+    if type == 1:
+        type=2
+    if type == 2:
+        type=1
     a = Ads.objects.all().filter(status=1, Type_id=int(type))
     index = random.randint(0, Ads.objects.all().filter(status=1, Type_id=int(type)).count()-1)
     return a[index]
