@@ -14,7 +14,7 @@ def home(request):
 
 def category(request, id):
     context = {"news": News.objects.all().filter(Category_id=id),
-               "Category": Category.objects.all(), "catsingle": Category.objects.get(id=id)}
+               "Category": Category.objects.all(), "catsingle": Category.objects.get(id=id),"ads": getads(type=2)}
     return render(request, "user/content.html", context)
 
 
